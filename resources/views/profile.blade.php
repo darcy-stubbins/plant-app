@@ -15,7 +15,9 @@
                     @endif
 
                       <div class="text-primary">
-                      This is the home page.
+                      This is your profile. 
+
+                      
                       </div>
                 </div>
             </div>
