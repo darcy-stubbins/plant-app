@@ -23,7 +23,7 @@
         <nav class="navbar navbar-light bg-light py-3">
             <div class="container-fluid">
                 @guest
-                    <a class="navbar-brand">Welcome</a>
+                    <a class="navbar-brand px-5">Welcome</a>
 
                     <ul class="navbar-nav list-group-horizontal gap-4 px-5">
                         @if (Route::has('login'))
@@ -39,10 +39,17 @@
                         @endif
                     </ul>
                 @else
-                    <a class="navbar-brand" href="/">Home</a>
+                    <ul class="navbar-nav list-group-horizontal gap-2 px-5">
+                        <li>
+                            <a class="navbar-brand" href="/">Home</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand" href="/categories">Categories</a>
+                        </li>
+                    </ul>
 
                     {{-- search bar --}}
-                    <ul class="navbar-nav list-group-horizontal gap-4 px-5">
+                    {{-- <ul class="navbar-nav list-group-horizontal gap-4 px-5">
                         <li class="nav-item">
                             <form class="d-flex">
                                 <input class="form-control me-2" type="search" placeholder="Search for plants"
@@ -50,7 +57,7 @@
                                 <button class="btn-1" type="submit">Search</button>
                             </form>
                         </li>
-                    </ul>
+                    </ul> --}}
 
                     {{-- navbar dropdown --}}
                     <ul class="navbar-nav list-group-horizontal gap-4 px-5">
@@ -84,7 +91,6 @@
                 @endguest
             </div>
         </nav>
-
 
         <main class="py-4">
             @yield('content')
