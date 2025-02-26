@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Shows the categories 
@@ -15,7 +15,7 @@ class CategoriesController extends Controller
         //get all the categories 
         $categories = Category::all();
 
-        return view('categories')->with(['categories' => $categories]);
+        return view('categories.index')->with(['categories' => $categories]);
     }
 
     /**
@@ -39,7 +39,10 @@ class CategoriesController extends Controller
      */
     public function show(string $id)
     {
-        // 
+        //getting the category with its types by id
+        $category = Category::with('types')->find($id);
+
+        return view('categories.show')->with(['category' => $category]);
     }
 
     /**

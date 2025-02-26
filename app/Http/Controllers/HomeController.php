@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //getting all the types and shuffle
+        $types = Type::all()->shuffle();
+
+        return view('home')->with(['types' => $types]);
     }
 }

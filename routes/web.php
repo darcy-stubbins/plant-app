@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 //routes used by Laravel UI package for auth
@@ -21,7 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 //categories 
-Route::get('/categories', [CategoriesController::class, 'index'])->name('categories');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
 //the specific category 
-Route::get('categories/{id}', [CategoriesController::class, 'show'])->name('categories.show');
+Route::get('categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
