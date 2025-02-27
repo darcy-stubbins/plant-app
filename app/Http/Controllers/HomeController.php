@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //getting all the types and shuffle
+        //getting all the types and shuffle them
         $types = Type::all()->shuffle();
 
-        return view('home')->with(['types' => $types]);
+        //get all the tags to pass into the homepage for the taggedTypes function in TypeController
+        $tags = Tag::all();
+
+        return view('home')->with(['types' => $types, 'tags' => $tags]);
     }
 }

@@ -4,7 +4,9 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TypeController;
 use App\Models\Category;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 
 //routes used by Laravel UI package for auth
@@ -26,3 +28,6 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 
 //the specific category 
 Route::get('categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
+
+//the tagged types 
+Route::get('/type/tagged/{id}', [TypeController::class, 'taggedTypes'])->name('taggedTypes');

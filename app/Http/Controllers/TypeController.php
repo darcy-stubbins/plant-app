@@ -12,8 +12,22 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
-        dd($types);
+        //
+    }
+
+    /**
+     * Shows all the tagged types  
+     */
+    public function taggedTypes(int $id)
+    {
+        $tagIdImLookingFor = $id;
+
+        //loops through all the types, checks their tags and returns the tags id if it matches $tagIdImLookingFor
+        $types = Type::all()->filter(function (Type $value, int $key) use ($tagIdImLookingFor) {
+            return $value->tags->pluck('id')->contains($tagIdImLookingFor);
+        });
+
+        return view('types.show')->with(['types' => $types]);
     }
 
     /**
