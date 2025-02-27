@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -20,14 +21,19 @@ class TypeController extends Controller
      */
     public function taggedTypes(int $id)
     {
+        //pass the tags into the view 
+        $tag = Tag::find($id);
+
         $tagIdImLookingFor = $id;
 
         //loops through all the types, checks their tags and returns the tags id if it matches $tagIdImLookingFor
-        $types = Type::all()->filter(function (Type $value, int $key) use ($tagIdImLookingFor) {
-            return $value->tags->pluck('id')->contains($tagIdImLookingFor);
-        });
+        $types = Type::all()
+            ->filter(function (Type $value, int $key) use ($tagIdImLookingFor) {
+                return $value->tags->pluck('id')->contains($tagIdImLookingFor);
+            })
+            ->shuffle();
 
-        return view('types.show')->with(['types' => $types]);
+        return view('types.filteredIndex')->with(['types' => $types, 'tag' => $tag]);
     }
 
     /**

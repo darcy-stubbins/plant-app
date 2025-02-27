@@ -9,6 +9,9 @@
         @endif
 
         <div class="container-fluid m-3">
+            <div class="h3 text-center mb-2">
+                {{ $tag->name }}
+            </div>
             <div class="row gap-2 justify-content-center">
                 @foreach ($types as $type)
                     <div class="card p-0" style="width: 20rem">
@@ -21,4 +24,5 @@
                 @endforeach
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
