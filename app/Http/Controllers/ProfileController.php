@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
+use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
     /**
-     * Show the users profile
+     * Show the index 
      */
     public function index()
     {
-        return view('profile');
+        //
     }
 
     /**
@@ -31,11 +34,18 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource. (the current logged in user)
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $user = Auth::user();
+
+        //getting the types with the likes, where the likes user_id matches the $user->id 
+        $likedTypes = Type::whereHas('likes', function ($query) use ($user) {
+            return $query->where('user_id', $user->id);
+        })->get();
+
+        return view('profile')->with(['user' => $user, 'likedTypes' => $likedTypes]);
     }
 
     /**
