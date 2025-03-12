@@ -33,5 +33,5 @@ Route::get('categories/{id}', [CategoryController::class, 'show'])->name('catego
 //the tagged types 
 Route::get('/type/tagged/{id}', [TypeController::class, 'taggedTypes'])->name('taggedTypes');
 
-//liked types 
-Route::post('/like', [LikeController::class, 'store'])->name('like');
+//toggle the likes on the types 
+Route::post('/like', [LikeController::class, 'toggleLike'])->name('toggleLike');

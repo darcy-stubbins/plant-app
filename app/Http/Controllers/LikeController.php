@@ -3,29 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
-use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    public function store(Request $request)
+    //create a like 
+    public function toggleLike(Request $request)
     {
         $typeId = $request->input('type_id');
-
         $user = Auth::user();
 
-        $like = new Like();
-        $like->type_id = $typeId;
-        $like->user_id = $user->id;
+        $like = Like::where('user_id', $user->id)->where('type_id', $typeId)->get();
 
-        $like->save();
+        if ($like->isEmpty()) {
+            $like = new Like();
+            $like->type_id = $typeId;
+            $like->user_id = $user->id;
+
+            $like->save();
+        } else {
+
+            Like::where('user_id', $user->id)->where('type_id', $typeId)->delete();
+        }
 
         return back();
-    }
-
-    public function destroy()
-    {
-        //
     }
 }

@@ -16,7 +16,7 @@
                     <div class="card p-0" style="width: 20rem">
                         <img src="{{ $type->picture_source }}" class="rounded mb-2 card-img-top">
 
-                        {{-- like icon button  --}}
+                        {{-- like icon button with form --}}
                         <form action="/like" method="POST">
                             @csrf
 
