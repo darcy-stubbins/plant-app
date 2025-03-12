@@ -30,8 +30,7 @@ class TypeController extends Controller
         $types = Type::all()
             ->filter(function (Type $value, int $key) use ($tagIdImLookingFor) {
                 return $value->tags->pluck('id')->contains($tagIdImLookingFor);
-            })
-            ->shuffle();
+            });
 
         return view('types.filteredIndex')->with(['types' => $types, 'tag' => $tag]);
     }
