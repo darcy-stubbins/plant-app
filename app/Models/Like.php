@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Like extends Model
 {
-    public function types()
+    public function type()
     {
         return $this->BelongsTo(Type::class);
     }

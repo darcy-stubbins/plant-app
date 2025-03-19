@@ -9,9 +9,8 @@
         @endif
 
         <div class="container-fluid m-3">
-            <div class="h3 text-center mb-2">
-                {{ $tag->name }}
-            </div>
+            <h3 class="text-center mb-3">{{ $tag->name }}</h3>
+            <h5 class="text-center text-muted mb-3">{{ $tag->description }}</h5>
             <div class="row gap-2 justify-content-center">
                 @foreach ($types as $type)
                     <div class="card p-0" style="width: 20rem">

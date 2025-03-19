@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -42,7 +43,10 @@ class CategoryController extends Controller
         //getting the category with its types by id
         $category = Category::with('types')->find($id);
 
-        return view('categories.show')->with(['category' => $category]);
+        //pass the tags into the view 
+        $tags = Tag::all();
+
+        return view('categories.show')->with(['category' => $category, 'tags' => $tags]);
     }
 
     /**

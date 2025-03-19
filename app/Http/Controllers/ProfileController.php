@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\Tag;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,12 +41,18 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
+        //pass the types into the view 
+        $types = Type::all();
+
+        //pass the tags into the view 
+        $tags = Tag::all();
+
         //getting the types with the likes, where the likes user_id matches the $user->id 
         $likedTypes = Type::whereHas('likes', function ($query) use ($user) {
             return $query->where('user_id', $user->id);
         })->get();
 
-        return view('profile')->with(['user' => $user, 'likedTypes' => $likedTypes]);
+        return view('profile')->with(['user' => $user, 'likedTypes' => $likedTypes, 'types' => $types, 'tags' => $tags]);
     }
 
     /**
